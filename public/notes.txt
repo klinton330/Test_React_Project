@@ -1,0 +1,19 @@
+import "./ExpenseItem.css";
+function ExpenseItem() {
+  const todayDate = new Date(2022, 6, 16);
+  //Expense.js
+  const description = "Car Insurence";
+  const price = "785";
+
+  return (
+    <div className="expense-item">
+      <div>{todayDate.toISOString()}</div>
+      <div className="expense-item__description">
+        <h2>{description}</h2>
+        <div className="expense-item__price ">${price}</div>
+      </div>
+    </div>
+  );
+}
+
+export default ExpenseItem;
