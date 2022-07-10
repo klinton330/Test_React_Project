@@ -27,14 +27,16 @@ function ExpenseItem(props) {
     //newPrice(props.amount)
   }
   return (
-    <Card className="expense-item">
-      <ExpenseDate date={props.date} />
-      <div className="expense-item__description">
-        <h2>{props.title}</h2>
-        <div className="expense-item__price ">${props.amount}</div>
-      </div>
-      <button onClick={clickMe}>Click me</button>
-    </Card>
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate date={props.date} />
+        <div className="expense-item__description">
+          <h2>{props.title}</h2>
+          <div className="expense-item__price ">${props.amount}</div>
+        </div>
+        <button onClick={clickMe}>Click me</button>
+      </Card>
+    </li>
   )
 }
 

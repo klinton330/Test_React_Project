@@ -1,31 +1,57 @@
 import React, { useState } from 'react'
-import ExpenseItem from '../Expenses/ExpenseItem'
 import Card from '../UI/Card'
 import '../Expenses/Expense.css'
 import ExpenseFilter from '../NewExpenses/ExpenseFilter'
+import ExpenseList from './ExpenseList'
 
 function Expense(props) {
   const [filterYear, selectedYear] = useState('2020')
+
   const getSelectedYear = (Year) => {
     console.log('inside expense', Year)
+    //props.onGetYear(Year)
     selectedYear(Year) //2021
     console.log('filter Year', filterYear) //2020
   }
+
+  const filterYears = props.expenses.filter(
+    (x) => x.date.getFullYear().toString() === filterYear,
+  )
+
   return (
     <div>
       <Card className="expenses">
         <ExpenseFilter selected={filterYear} onSelectYear={getSelectedYear} />
-        {/* props.expenses are array of data from App.js we iterate it using map
-        function  */}
-        {props.expenses.map((item) => {
-          return (
-            <ExpenseItem
-              title={item.title}
-              amount={item.amount}
-              date={item.date}
-            />
-          )
-        })}
+        <ExpenseList item={filterYears} />
+        {/* {filterYears.length === 0 && <p>No Expenses Found</p>}
+        {filterYears.length > 0 &&
+          filterYears.map((item) => {
+            return (
+              <ExpenseItem
+                key={item.id}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              />
+            )
+          })} */}
+        {/* Conditional type 1
+        
+        {filterYears.length === 0 ? (
+          <p>No Expenses Found</p>
+        ) : (
+          filterYears.map((item) => {
+            return (
+              <ExpenseItem
+                key={item.id}
+                title={item.title}
+                amount={item.amount}
+                date={item.date}
+              />
+            )
+          })
+        )} */}
+
         {/* <ExpenseItem
           title={props.expenses[0].title}
           amount={props.expenses[0].amount}
